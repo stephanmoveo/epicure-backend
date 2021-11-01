@@ -19,3 +19,25 @@ exports.findChef = async (req, res) => {
     res.json(err);
   }
 };
+
+exports.updateChef = async (req, res) => {
+  const data = req.body;
+  try {
+    const response = await chefHandler.updateChefHandler(data);
+    res.json(response);
+  } catch (err) {
+    res.json(err);
+  }
+};
+
+exports.deleteChef = async (req, res) => {
+    const data = req.params;
+    console.log(data);
+    try {
+      const response = await chefHandler.deleteChefHandler(data);
+      res.json(response);
+    } catch (err) {
+      res.json(err);
+    }
+
+};

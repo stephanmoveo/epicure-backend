@@ -30,3 +30,23 @@ exports.allRestaurantsHandler = async () => {
     .exec();
   return allRestaurants;
 };
+
+exports.updateRestaurantHandler = async (data) => {
+  const chef = await chefModel.findById({ _id: data.chef });
+  const restaurant = await restaurantModel.findByIdAndUpdate(
+    { _id: data.id },
+    { name: data.name, image: data.image, valid: data.valid }
+  );
+  await chef.updateOne({
+    $push: { restaurants: restaurant },
+  });
+  return restaurant;
+};
+
+exports.deleteRestaurantHandler = async (data) => {
+  const restaurant = await restaurantModel.findByIdAndUpdate(
+    { _id: data.id },
+    { valid: false }
+  );
+  return restaurant;
+};

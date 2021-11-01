@@ -20,3 +20,31 @@ exports.createDishHandler = async (data) => {
   });
   return dish;
 };
+
+exports.allDishesHandler = async (data) => {
+  const dishes = await dishModel.find();
+  return dishes;
+};
+
+exports.updateDishHandler = async (data) => {
+  const dish = await dishModel.findByIdAndUpdate(
+    { _id: data.id },
+    {
+      name: data.name,
+      image: data.image,
+      description: data.description,
+      typeIcon: data.typeIcon,
+      price: data.price,
+    }
+  );
+
+  return dish;
+};
+
+exports.deleteDishHandler = async (data) => {
+  const dish = await dishModel.findByIdAndUpdate(
+    { _id: data.id },
+    { valid: false }
+  );
+  return dish;
+};

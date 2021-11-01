@@ -7,6 +7,7 @@ const dishModel = new Schema({
   typeIcon: { type: Object},
   price: { type: String, required: true, default: "" },
   restaurant: { type: Schema.Types.ObjectId, ref: "restaurant" },
+  valid: { type: Boolean, required: true, default: true },
 });
 
 module.exports = model("dish", dishModel);

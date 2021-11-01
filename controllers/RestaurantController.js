@@ -18,3 +18,23 @@ exports.allRestaurants = async (req, res) => {
     res.json(err);
   }
 };
+
+exports.updateRestaurant = async (req, res) => {
+  const data = req.body;
+  try {
+    const response = await restaurantHandler.updateRestaurantHandler(data);
+    res.json(response);
+  } catch (err) {
+    res.json(err);
+  }
+};
+
+exports.deleteRestaurant = async (req,res)=>{
+    const data = req.params;
+    try {
+      const response = await restaurantHandler.deleteRestaurantHandler(data);
+      res.json(response);
+    } catch (err) {
+      res.json(err);
+    }
+}

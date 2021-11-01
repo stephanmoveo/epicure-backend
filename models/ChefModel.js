@@ -6,6 +6,7 @@ const chefModel = new Schema({
   image: { type: String, required: true, default: "" },
   description: { type: String, required: true, default: "" },
   restaurants: [{ type: Schema.Types.ObjectId, ref: "restaurant" }],
+  valid: { type: Boolean, required: true, default: true },
 });
 
 module.exports = model("chef", chefModel);

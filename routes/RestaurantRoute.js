@@ -3,7 +3,9 @@ const router = express.Router();
 const restaurantController = require('../controllers/RestaurantController')
 
 router.route('/createRestaurant').post(restaurantController.createRestaurant)
-router.route('/allRestaurants').get(restaurantController.allRestaurants)
+router.route('/readAllRestaurants').get(restaurantController.allRestaurants)
+router.route('/updateRestaurant').post(restaurantController.updateRestaurant)
+router.route('/deleteRestaurant/:id').get(restaurantController.deleteRestaurant)
 
 module.exports = router
 
