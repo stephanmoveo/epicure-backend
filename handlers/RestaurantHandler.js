@@ -1,17 +1,12 @@
 const mongoose = require("mongoose");
 const restaurantModel = require("../models/RestaurantModel");
-const chefModel = require("../models/ChefModel");
 const makeObjectId = mongoose.Types.ObjectId;
 
-exports.createRestaurantHandler = async (data) => {
-  const chef = await chefModel.findById({ _id: data.chef });
+exports.createRestaurant = async (data, chef) => {
   const restaurant = await restaurantModel.create({
     name: data.name,
     image: data.image,
     chef: makeObjectId(chef._id),
-  });
-  await chef.updateOne({
-    $push: { restaurants: restaurant },
   });
   return restaurant;
 };
@@ -32,14 +27,10 @@ exports.allRestaurantsHandler = async () => {
 };
 
 exports.updateRestaurantHandler = async (data) => {
-  const chef = await chefModel.findById({ _id: data.chef });
   const restaurant = await restaurantModel.findByIdAndUpdate(
     { _id: data.id },
     { name: data.name, image: data.image, valid: data.valid }
   );
-  await chef.updateOne({
-    $push: { restaurants: restaurant },
-  });
   return restaurant;
 };
 
@@ -49,4 +40,15 @@ exports.deleteRestaurantHandler = async (data) => {
     { valid: false }
   );
   return restaurant;
+};
+
+exports.getRestById = async (restId) => {
+  const restaurant = await restaurantModel.findById({ _id: restId});
+  return restaurant;
+};
+
+exports.updateDishRest = async (rest, dish) => {
+  await rest.updateOne({
+    $push: { dishes: dish },
+  });
 };

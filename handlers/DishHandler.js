@@ -1,12 +1,8 @@
 const mongoose = require("mongoose");
-const restaurantModel = require("../models/RestaurantModel");
 const dishModel = require("../models/DishModel");
 const makeObjectId = mongoose.Types.ObjectId;
 
-exports.createDishHandler = async (data) => {
-  const restaurant = await restaurantModel.findById({
-    _id: data.restaurant,
-  });
+exports.createDishHandler = async (data, restaurant) => {
   const dish = await dishModel.create({
     name: data.name,
     image: data.image,
@@ -15,9 +11,7 @@ exports.createDishHandler = async (data) => {
     price: data.price,
     restaurant: makeObjectId(restaurant._id),
   });
-  await restaurant.updateOne({
-    $push: { dishes: dish },
-  });
+
   return dish;
 };
 

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const restaurantModel = require("../models/RestaurantModel");
 const chefModel = require("../models/ChefModel");
 
 exports.createChefHandler = async (data) => {
@@ -10,6 +9,17 @@ exports.createChefHandler = async (data) => {
     description: data.description,
     restaurants: data.restaurants,
   });
+  return chef;
+};
+
+exports.updateChefRest = async (chef, rest) => {
+  await chef.updateOne({
+    $push: { restaurants: rest },
+  });
+};
+
+exports.getChefById = async (chefId) => {
+  const chef = await chefModel.findById({ _id: chefId });
   return chef;
 };
 
@@ -28,7 +38,6 @@ exports.findChefHandler = async (data) => {
 };
 
 exports.updateChefHandler = async (data) => {
-  console.log(data);
   const chef = await chefModel.findByIdAndUpdate(
     { _id: data.id },
     {
