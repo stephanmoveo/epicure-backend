@@ -32,7 +32,6 @@ exports.updateChef = async (req, res) => {
 
 exports.deleteChef = async (req, res) => {
     const data = req.params;
-    console.log(data);
     try {
       const response = await chefHandler.deleteChefHandler(data);
       res.json(response);
