@@ -1,35 +1,42 @@
 const mongoose = require("mongoose");
+const RestaurantModel = require("../models/RestaurantModel");
 const restaurantModel = require("../models/RestaurantModel");
 const makeObjectId = mongoose.Types.ObjectId;
+const {
+  findRestsWithDishesAggregation,
+} = require("./Aggregations/Aggregations");
+
 
 exports.createRestaurant = async (data, chef) => {
   const restaurant = await restaurantModel.create({
     name: data.name,
     image: data.image,
-    chef: makeObjectId(chef._id),
+    chef: makeObjectId(data.chefId),
+    valid: data.valid,
   });
   return restaurant;
 };
 
 exports.allRestaurantsHandler = async () => {
-  const allRestaurants = await restaurantModel
-    .find({ valid: true })
-    .select({ __v: 0 })
-    .populate([
-      { path: "dishes", select: { __v: 0, restaurant: 0 } },
-      {
-        path: "chef",
-        select: { description: 0, restaurants: 0, __v: 0, image: 0 },
-      },
-    ])
-    .exec();
+  const allRestaurants = await restaurantModel.find({ valid: true });
   return allRestaurants;
+};
+
+exports.findRestWithDishesHandler = async (data) => {
+  const aggregation = findRestsWithDishesAggregation(data);
+  const restaurant = await RestaurantModel.aggregate(aggregation);
+  return restaurant;
 };
 
 exports.updateRestaurantHandler = async (data) => {
   const restaurant = await restaurantModel.findByIdAndUpdate(
     { _id: data.id },
-    { name: data.name, image: data.image, valid: data.valid }
+    {
+      name: data.name,
+      image: data.image,
+      chef: makeObjectId(data.chefId),
+      valid: data.valid,
+    }
   );
   return restaurant;
 };
@@ -42,13 +49,3 @@ exports.deleteRestaurantHandler = async (data) => {
   return restaurant;
 };
 
-exports.getRestById = async (restId) => {
-  const restaurant = await restaurantModel.findById({ _id: restId});
-  return restaurant;
-};
-
-exports.updateDishRest = async (rest, dish) => {
-  await rest.updateOne({
-    $push: { dishes: dish },
-  });
-};

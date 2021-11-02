@@ -1,5 +1,7 @@
-const mongoose = require("mongoose");
 const chefModel = require("../models/ChefModel");
+const restaurantModel = require("../models/RestaurantModel");
+const {findChefAndRestsAgregation} = require('./Aggregations/Aggregations')
+
 
 exports.createChefHandler = async (data) => {
   const chef = await chefModel.create({
@@ -7,34 +9,14 @@ exports.createChefHandler = async (data) => {
     lastName: data.lastName,
     image: data.image,
     description: data.description,
-    restaurants: data.restaurants,
   });
-  return chef;
-};
-
-exports.updateChefRest = async (chef, rest) => {
-  await chef.updateOne({
-    $push: { restaurants: rest },
-  });
-};
-
-exports.getChefById = async (chefId) => {
-  const chef = await chefModel.findById({ _id: chefId });
   return chef;
 };
 
 exports.findChefHandler = async (data) => {
-  const chef = await chefModel
-    .find({
-      lastName: data.lastName,
-    })
-    .select({ __v: 0 })
-    .populate({
-      path: "restaurants",
-      select: { name: 1, image: 1 },
-    })
-    .exec();
-  return chef;
+  const aggregation = findChefAndRestsAgregation(data)
+  const rest = await restaurantModel.aggregate(aggregation);
+  return rest;
 };
 
 exports.updateChefHandler = async (data) => {
@@ -57,8 +39,3 @@ exports.deleteChefHandler = async (data) => {
   );
   return chef;
 };
-
-
-
-
-

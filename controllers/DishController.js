@@ -4,9 +4,7 @@ const restaurantHandler = require("../handlers/RestaurantHandler");
 exports.createDish = async (req, res) => {
   const data = req.body;
   try {
-    const restaurant = await restaurantHandler.getRestById(data.restaurant);
-    const dish = await dishHandler.createDishHandler(data, restaurant);
-    await restaurantHandler.updateDishRest(restaurant, dish);
+    const dish = await dishHandler.createDishHandler(data);
     res.json(dish);
   } catch (err) {
     res.json(err);
@@ -14,9 +12,19 @@ exports.createDish = async (req, res) => {
 };
 
 exports.allDishes = async (req, res) => {
-  const data = req.params;
   try {
-    const response = await dishHandler.allDishesHandler(data);
+    const response = await dishHandler.allDishesHandler();
+    res.json(response);
+  } catch (err) {
+    res.json(err);
+  }
+};
+
+exports.findDish = async (req, res) => {
+  const data = req.params;
+
+  try {
+    const response = await dishHandler.findDishHandler(data);
     res.json(response);
   } catch (err) {
     res.json(err);
