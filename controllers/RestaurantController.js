@@ -4,7 +4,7 @@ exports.createRestaurant = async (req, res) => {
   const data = req.body;
   try {
     const restaurant = await restaurantHandler.createRestaurant(data);
-    res.json(restaurant);
+    res.json({restaurant, succses:true});
   } catch (err) {
     res.json(err);
   }
