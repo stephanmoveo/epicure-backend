@@ -18,21 +18,27 @@ exports.allRestaurants = async (req, res) => {
     res.json(err);
   }
 };
-
-exports.findRestWithDishes = async (req,res)=>{
-    const data = req.params;
-
-    try {
-        const response = await restaurantHandler.findRestWithDishesHandler(data);
-        res.json(response);
-      } catch (err) {
-        res.json(err);
-      }
-
+exports.findRestaurantsWithDishes = async(req,res)=>{
+  try {
+    const response = await restaurantHandler.findRestaurantsWithDishes();
+    res.json(response);
+  } catch (err) {
+    res.json(err);
+  }
 }
+exports.findRestWithDishes = async (req, res) => {
+  const data = req.params;
+  try {
+    const response = await restaurantHandler.findRestWithDishesHandler(data);
+    res.json(response);
+  } catch (err) {
+    res.json(err);
+  }
+};
 
 exports.updateRestaurant = async (req, res) => {
   const data = req.body;
+  console.log(data);
   try {
     const restaurant = await restaurantHandler.updateRestaurantHandler(data);
     res.json(restaurant);

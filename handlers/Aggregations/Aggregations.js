@@ -52,45 +52,51 @@ exports.findChefAndRestsAgregation = (data) => {
     },
   ];
 };
-
+exports.findAllRestaurantsWithDishes = () => {
+  return [
+    {
+      $lookup: {
+        from: "dishes",
+        localField: "_id",
+        foreignField: "restaurant",
+        as: "dishes",
+      },
+    },
+    {
+      $project: {
+        __v: 0,
+        valid: 0,
+        dishes: {
+          __v: 0,
+        },
+      },
+    },
+  ];
+};
 exports.findRestsWithDishesAggregation = (data) => {
   return [
     {
-      '$match': {
-        '_id': makeObjectId(data.id)
-      }
-    }, {
-      '$lookup': {
-        'from': 'dishes', 
-        'let': {
-          'the_valid': '$valid'
-        }, 
-        'pipeline': [
-          {
-            '$match': {
-              '$expr': {
-                '$and': [
-                  {
-                    '$eq': [
-                      '$$the_valid', true
-                    ]
-                  }
-                ]
-              }
-            }
-          }
-        ], 
-        'as': 'dishes'
-      }
-    }, {
-      '$project': {
-        '__v': 0, 
-        'valid': 0, 
-        'dishes': {
-          '__v': 0,
-          'valid': 0
-        }
-      }
-    }
+      $match: {
+        _id: makeObjectId(data.id),
+      },
+    },
+    {
+      $lookup: {
+        from: "dishes",
+        localField: "_id",
+        foreignField: "restaurant",
+        as: "dishes",
+      },
+    },
+    {
+      $project: {
+        __v: 0,
+        valid: 0,
+        dishes: {
+          __v: 0,
+          valid: 0,
+        },
+      },
+    },
   ];
 };

@@ -3,6 +3,7 @@ const dishModel = require("../models/DishModel");
 const makeObjectId = mongoose.Types.ObjectId;
 
 exports.createDishHandler = async (data) => {
+  console.log(data);
   const dish = await dishModel.create({
     name: data.name,
     image: data.image,
@@ -16,7 +17,12 @@ exports.createDishHandler = async (data) => {
 };
 
 exports.allDishesHandler = async () => {
-  const dishes = await dishModel.find();
+  const dishes = await dishModel
+    .find({
+      valid: true,
+    })
+    .select({ __v: 0, valid: 0 })
+
   return dishes;
 };
 

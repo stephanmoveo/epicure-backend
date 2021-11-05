@@ -4,7 +4,8 @@ exports.createChef = async (req, res) => {
   const data = req.body;
   try {
     const response = await chefHandler.createChefHandler(data);
-    res.json(response);
+    res.json({response, succses:true});
+
   } catch (err) {
     res.json(err);
   }
@@ -31,12 +32,20 @@ exports.updateChef = async (req, res) => {
 };
 
 exports.deleteChef = async (req, res) => {
-    const data = req.params;
-    try {
-      const response = await chefHandler.deleteChefHandler(data);
-      res.json(response);
-    } catch (err) {
-      res.json(err);
-    }
+  const data = req.params;
+  try {
+    const response = await chefHandler.deleteChefHandler(data);
+    res.json(response);
+  } catch (err) {
+    res.json(err);
+  }
+};
 
+exports.allChefs = async (req, res) => {
+  try {
+    const response = await chefHandler.allChefs();
+    res.json(response);
+  } catch (err) {
+    res.json(err);
+  }
 };

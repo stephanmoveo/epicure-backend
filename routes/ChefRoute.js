@@ -6,5 +6,5 @@ router.route('/createChef').post(chefController.createChef)
 router.route('/readFindChef/:id').get(chefController.findChef)
 router.route('/updateChef').post(chefController.updateChef)
 router.route('/deleteChef/:id').get(chefController.deleteChef)
-
+router.route('/allChefs').get(chefController.allChefs)
 module.exports = router

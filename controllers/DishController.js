@@ -1,11 +1,10 @@
 const dishHandler = require("../handlers/DishHandler");
-const restaurantHandler = require("../handlers/RestaurantHandler");
 
 exports.createDish = async (req, res) => {
   const data = req.body;
   try {
     const dish = await dishHandler.createDishHandler(data);
-    res.json(dish);
+    res.json({dish, succses:true});
   } catch (err) {
     res.json(err);
   }
