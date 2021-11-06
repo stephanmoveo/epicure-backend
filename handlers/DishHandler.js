@@ -21,7 +21,7 @@ exports.allDishesHandler = async () => {
     .find({
       valid: true,
     })
-    .select({ __v: 0, valid: 0 })
+    .select({ __v: 0 });
 
   return dishes;
 };
@@ -32,6 +32,7 @@ exports.findDishHandler = async (data) => {
 };
 
 exports.updateDishHandler = async (data) => {
+  console.log(data);
   const dish = await dishModel.findByIdAndUpdate(
     { _id: data.id },
     {
@@ -40,6 +41,7 @@ exports.updateDishHandler = async (data) => {
       description: data.description,
       typeIcon: data.typeIcon,
       price: data.price,
+      valid: data.isvalid,
     }
   );
   return dish;
