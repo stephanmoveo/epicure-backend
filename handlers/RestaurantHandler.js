@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const ChefModel = require("../models/ChefModel");
 const restaurantModel = require("../models/RestaurantModel");
 const makeObjectId = mongoose.Types.ObjectId;
 const {
@@ -28,7 +29,7 @@ exports.allRestaurantsHandler = async () => {
 };
 
 exports.findRestaurantsWithDishes = async () => {
-  const aggregation = findAllRestaurantsWithDishes()
+  const aggregation = findAllRestaurantsWithDishes();
   const restaurants = await restaurantModel.aggregate(aggregation);
   return restaurants;
 };

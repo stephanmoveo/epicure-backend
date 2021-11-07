@@ -10,7 +10,7 @@ exports.findChefAndRestsAgregation = (data) => {
     },
     {
       $project: {
-        valid: 0,
+        // valid: 0,
         __v: 0,
       },
     },
@@ -55,11 +55,21 @@ exports.findChefAndRestsAgregation = (data) => {
 exports.findAllRestaurantsWithDishes = () => {
   return [
     {
+      $match: {
+        valid: true,
+      },
+    },
+    {
       $lookup: {
         from: "dishes",
         localField: "_id",
         foreignField: "restaurant",
         as: "dishes",
+      },
+    },
+    {
+      $match: {
+        "dishes.valid": true,
       },
     },
     {

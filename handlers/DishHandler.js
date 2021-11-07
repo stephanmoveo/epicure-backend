@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const dishModel = require("../models/DishModel");
+const RestaurantModel = require("../models/RestaurantModel");
 const makeObjectId = mongoose.Types.ObjectId;
 
 exports.createDishHandler = async (data) => {
-  console.log(data);
-  const dish = await dishModel.create({
+  return await dishModel.create({
     name: data.name,
     image: data.image,
     description: data.description,
@@ -13,7 +13,7 @@ exports.createDishHandler = async (data) => {
     restaurant: makeObjectId(data.restaurant),
   });
 
-  return dish;
+  // return dish;
 };
 
 exports.allDishesHandler = async () => {

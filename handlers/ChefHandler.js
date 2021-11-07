@@ -36,6 +36,12 @@ exports.deleteChefHandler = async (data) => {
     { _id: data.id },
     { valid: false }
   );
+  const rests = await restaurantModel.updateMany(
+    { chef: data.id },
+    {
+      valid: false,
+    }
+  );
   return chef;
 };
 
