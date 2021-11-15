@@ -46,7 +46,7 @@ exports.updateRestaurantHandler = async (data) => {
     {
       name: data.name,
       image: data.image,
-      // chef: makeObjectId(data.chefId)
+      chef: makeObjectId(data.chefId)
     }
   );
   return restaurant;
