@@ -4,9 +4,11 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 exports.login = async (data) => {
-  const user = await userModel.findOne({
-    userName: data.userName,
-  });
+  const user = await userModel
+    .findOne({
+      userName: data.userName,
+    })
+    .select({ __v: 0});
   if (!(await user.comparePasswords(data.password))) {
     return false;
   } else {

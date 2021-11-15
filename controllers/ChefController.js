@@ -3,9 +3,8 @@ const chefHandler = require("../handlers/ChefHandler");
 exports.createChef = async (req, res) => {
   const data = req.body;
   try {
-    const response = await chefHandler.createChefHandler(data);
-    res.json({response, succses:true});
-
+    await chefHandler.createChefHandler(data);
+    res.json({ succses: true });
   } catch (err) {
     res.json(err);
   }
@@ -24,8 +23,8 @@ exports.findChef = async (req, res) => {
 exports.updateChef = async (req, res) => {
   const data = req.body;
   try {
-    const response = await chefHandler.updateChefHandler(data);
-    res.json(response);
+    await chefHandler.updateChefHandler(data);
+    res.json({ succses: true });
   } catch (err) {
     res.json(err);
   }
@@ -34,8 +33,8 @@ exports.updateChef = async (req, res) => {
 exports.deleteChef = async (req, res) => {
   const data = req.params;
   try {
-    const response = await chefHandler.deleteChefHandler(data);
-    res.json(response);
+    await chefHandler.deleteChefHandler(data);
+    res.json({ succses: true });
   } catch (err) {
     res.json(err);
   }

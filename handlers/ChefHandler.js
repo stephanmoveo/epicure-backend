@@ -2,24 +2,29 @@ const chefModel = require("../models/ChefModel");
 const restaurantModel = require("../models/RestaurantModel");
 const { findChefAndRestsAgregation } = require("./Aggregations/Aggregations");
 
+
+/**
+@api {post} admin/chef/createChef
+@apiGroup chef
+
+ */
+
 exports.createChefHandler = async (data) => {
-  const chef = await chefModel.create({
+  return await chefModel.create({
     firstName: data.firstName,
     lastName: data.lastName,
     image: data.image,
     description: data.description,
   });
-  return chef;
 };
 
 exports.findChefHandler = async (data) => {
   const aggregation = findChefAndRestsAgregation(data);
-  const rest = await restaurantModel.aggregate(aggregation);
-  return rest;
+  return await restaurantModel.aggregate(aggregation);
 };
 
 exports.updateChefHandler = async (data) => {
-  const chef = await chefModel.findByIdAndUpdate(
+  return await chefModel.findByIdAndUpdate(
     { _id: data.id },
     {
       firstName: data.firstName,
@@ -28,7 +33,6 @@ exports.updateChefHandler = async (data) => {
       description: data.description,
     }
   );
-  return chef;
 };
 
 exports.deleteChefHandler = async (data) => {
@@ -46,8 +50,5 @@ exports.deleteChefHandler = async (data) => {
 };
 
 exports.allChefs = async () => {
-  const chefs = await chefModel
-    .find({ valid: true })
-    .select({ valid: 0, __v: 0 });
-  return chefs;
+  return await chefModel.find({ valid: true }).select({ valid: 0, __v: 0 });
 };

@@ -3,8 +3,8 @@ const dishHandler = require("../handlers/DishHandler");
 exports.createDish = async (req, res) => {
   const data = req.body;
   try {
-    const dish = await dishHandler.createDishHandler(data);
-    res.json({dish, succses:true});
+    await dishHandler.createDishHandler(data);
+    res.json({ succses: true });
   } catch (err) {
     res.json(err);
   }
@@ -21,7 +21,6 @@ exports.allDishes = async (req, res) => {
 
 exports.findDish = async (req, res) => {
   const data = req.params;
-
   try {
     const response = await dishHandler.findDishHandler(data);
     res.json(response);
@@ -33,8 +32,8 @@ exports.findDish = async (req, res) => {
 exports.updateDish = async (req, res) => {
   const data = req.body;
   try {
-    const response = await dishHandler.updateDishHandler(data);
-    res.json(response);
+    await dishHandler.updateDishHandler(data);
+    res.json({ succses: true });
   } catch (err) {
     res.json(err);
   }
@@ -43,8 +42,8 @@ exports.updateDish = async (req, res) => {
 exports.deleteDish = async (req, res) => {
   const data = req.params;
   try {
-    const response = await dishHandler.deleteDishHandler(data);
-    res.json(response);
+    await dishHandler.deleteDishHandler(data);
+    res.json({ succses: true });
   } catch (err) {
     res.json(err);
   }
