@@ -6,6 +6,7 @@ const dishController = require('../controllers/DishController')
  * @api {post} dish/createDish Create Dish.
  * @apiGroup Dish
  * @apiName createDish
+ * @apiDescription Creates a new Dish in database.
  * @apiParam {String} name Dish name.
  * @apiParam {String} description Dish description.
  * @apiParam {String} image Dish image.
@@ -13,11 +14,9 @@ const dishController = require('../controllers/DishController')
  * @apiParam {Boolean} [typeIcon[spicy]] if Dish is spicy.
  * @apiParam {Boolean} [typeIcon[vegan]] if Dish is vegan.
  * @apiParam {Boolean} [typeIcon[vegeterian]] if Dish is vegeterian.
- * @apiError Empty fields
- * @apiUse MustFillFiledsError
- * @apiDescription Creates a new Dish in database.
  * @apiExample {js} Example usage:
  *  http://localhost:3000/admin/dish/createDish
+ * @apiUse MustFillFiledsError
  * @apiUse EpicureHeaderSet
  * @apiUse Admin
  * @apiUse SuccessResponse
@@ -54,8 +53,8 @@ router.route('/updateDish').post(dishController.updateDish)
  * @api {get} dish/findDish/:id Find Dish by ID.
  * @apiGroup Dish
  * @apiName findDish
- * @apiParam {String} id Dish unique ID.
  * @apiDescription Finds a Dish from database.
+ * @apiParam {String} id Dish unique ID.
  * @apiExample {js} Example usage:
  *  http://localhost:3000/admin/dish/findDish/619230a83ada833508557956
  * @apiUse Admin

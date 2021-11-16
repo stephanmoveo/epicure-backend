@@ -6,17 +6,16 @@ const chefController = require("../controllers/ChefController");
 /**
  * @api {post} admin/chef/createChef Create Chef.
  * @apiGroup Chef
+ * @apiName createChef
  * @apiParam {String} firstName Chef firstName.
  * @apiParam {String} lastName Chef lastName.
  * @apiParam {String} description Chef description.
  * @apiParam {String} image Chef image.
- * @apiError Empty fields
- * @apiUse MustFillFiledsError
  * @apiDescription Creates a new Chef in database.
  * @apiExample {js} Example usage:
  *  http://localhost:3000/admin/chef/createChef
+ * @apiUse MustFillFiledsError
  * @apiUse EpicureHeaderSet
- * @apiName createChef
  * @apiUse Admin
  * @apiUse SuccessResponse
  */

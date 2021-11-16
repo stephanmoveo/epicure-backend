@@ -10,11 +10,10 @@ const restaurantController = require('../controllers/RestaurantController')
  * @apiParam {String} name Restaurant name.
  * @apiParam {String} image Restaurant image.
  * @apiParam {String} chefId Restaurant chefId.
- * @apiError Empty fields
- * @apiUse MustFillFiledsError
  * @apiDescription Creates a new Restaurant in database.
  * @apiExample {js} Example usage:
  *  http://localhost:3000/admin/restaurants/createRestaurant
+ * @apiUse MustFillFiledsError
  * @apiUse EpicureHeaderSet
  * @apiUse Admin
  * @apiUse SuccessResponse
