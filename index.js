@@ -10,6 +10,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/admin", auth.protect, require("./routes/AdminRoute"));
 app.use("/user", require("./routes/UserRoute"));
+app.use("/docs", express.static("./apidoc"));
 
 
 app.listen(process.env.port || 3000, () => {

@@ -6,7 +6,7 @@ exports.createRestaurant = async (req, res) => {
     await restaurantHandler.createRestaurant(data);
     res.json({ succses: true });
   } catch (err) {
-    res.json(err);
+    res.json({ error: "Must Fill All Fields" });
   }
 };
 
@@ -32,7 +32,7 @@ exports.findRestWithDishes = async (req, res) => {
     const response = await restaurantHandler.findRestWithDishesHandler(data);
     res.json(response);
   } catch (err) {
-    res.json(err);
+    res.json({ error: "id not found" });
   }
 };
 
@@ -42,7 +42,7 @@ exports.updateRestaurant = async (req, res) => {
     await restaurantHandler.updateRestaurantHandler(data);
     res.json({ succses: true });
   } catch (err) {
-    res.json(err);
+    res.json({ error: "id not found" });
   }
 };
 
@@ -52,6 +52,6 @@ exports.deleteRestaurant = async (req, res) => {
     await restaurantHandler.deleteRestaurantHandler(data);
     res.json({ succses: true });
   } catch (err) {
-    res.json(err);
+    res.json({ error: "id not found" });
   }
 };

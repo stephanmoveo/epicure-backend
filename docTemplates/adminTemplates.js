@@ -1,0 +1,4 @@
+/**
+  * @apiDefine Admin
+  * @apiPermission admin
+ */

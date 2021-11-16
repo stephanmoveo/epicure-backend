@@ -5,7 +5,7 @@ exports.login = async (req, res, next) => {
   try {
     const token = await userHandler.login(data);
     if(!token)
-    return res.json({ succes: false});;
+    return res.json({ succes: false});
     return res.json({ succes: true, token});
   } catch (err) {
     res.json(err);
