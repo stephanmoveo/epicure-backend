@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const ChefModel = require("../models/ChefModel");
 const restaurantModel = require("../models/RestaurantModel");
 const makeObjectId = mongoose.Types.ObjectId;
 const {
@@ -7,7 +6,7 @@ const {
 } = require("./Aggregations/Aggregations");
 const { findAllRestaurantsWithDishes } = require("./Aggregations/Aggregations");
 
-exports.createRestaurant = async (data, chef) => {
+exports.createRestaurant = async (data) => {
   return await restaurantModel.create({
     name: data.name,
     image: data.image,

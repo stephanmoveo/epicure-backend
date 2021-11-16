@@ -2,13 +2,6 @@ const chefModel = require("../models/ChefModel");
 const restaurantModel = require("../models/RestaurantModel");
 const { findChefAndRestsAgregation } = require("./Aggregations/Aggregations");
 
-
-/**
-@api {post} admin/chef/createChef
-@apiGroup chef
-
- */
-
 exports.createChefHandler = async (data) => {
   return await chefModel.create({
     firstName: data.firstName,

@@ -6,7 +6,7 @@ exports.createChef = async (req, res) => {
     await chefHandler.createChefHandler(data);
     res.json({ succses: true });
   } catch (err) {
-    res.json(err);
+    res.json({ error: "Must Fill All Fields" });
   }
 };
 
@@ -16,7 +16,7 @@ exports.findChef = async (req, res) => {
     const response = await chefHandler.findChefHandler(data);
     res.json(response);
   } catch (err) {
-    res.json(err);
+    res.json({ error: "id not found" });
   }
 };
 
@@ -26,7 +26,7 @@ exports.updateChef = async (req, res) => {
     await chefHandler.updateChefHandler(data);
     res.json({ succses: true });
   } catch (err) {
-    res.json(err);
+    res.json({ error: "id not found" });
   }
 };
 
@@ -36,7 +36,7 @@ exports.deleteChef = async (req, res) => {
     await chefHandler.deleteChefHandler(data);
     res.json({ succses: true });
   } catch (err) {
-    res.json(err);
+    res.json({ error: "id not found" });
   }
 };
 

@@ -6,7 +6,7 @@ exports.createDish = async (req, res) => {
     await dishHandler.createDishHandler(data);
     res.json({ succses: true });
   } catch (err) {
-    res.json(err);
+    res.json({ error: "Must Fill All Fields" });
   }
 };
 
@@ -25,7 +25,7 @@ exports.findDish = async (req, res) => {
     const response = await dishHandler.findDishHandler(data);
     res.json(response);
   } catch (err) {
-    res.json(err);
+    res.json({ error: "id not found" });
   }
 };
 
@@ -35,7 +35,7 @@ exports.updateDish = async (req, res) => {
     await dishHandler.updateDishHandler(data);
     res.json({ succses: true });
   } catch (err) {
-    res.json(err);
+    res.json({ error: "id not found" });
   }
 };
 
@@ -45,6 +45,6 @@ exports.deleteDish = async (req, res) => {
     await dishHandler.deleteDishHandler(data);
     res.json({ succses: true });
   } catch (err) {
-    res.json(err);
+    res.json({ error: "id not found" });
   }
 };

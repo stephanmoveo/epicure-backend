@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const dishModel = require("../models/DishModel");
-const RestaurantModel = require("../models/RestaurantModel");
 const makeObjectId = mongoose.Types.ObjectId;
 
 exports.createDishHandler = async (data) => {

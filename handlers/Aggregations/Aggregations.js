@@ -10,7 +10,6 @@ exports.findChefAndRestsAgregation = (data) => {
     },
     {
       $project: {
-        // valid: 0,
         __v: 0,
       },
     },
