@@ -3,7 +3,7 @@
 	"apps": [
 
 		{
-			"name": "EPICURE SERVER",
+			"name": "EPICURE-SERVER",
 			"script": "./dist/index.js",
 			"env": {
 				 "NODE_ENV": "development"
