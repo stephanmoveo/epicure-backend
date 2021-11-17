@@ -38,7 +38,7 @@ router.route('/createRestaurant').post(restaurantController.createRestaurant)
 router.route('/readAllRestaurants').get(restaurantController.allRestaurants)
 
 /**
- * @api {post} restaurants/updateRestaurant Update Dish by ID.
+ * @api {post} restaurants/updateRestaurant Update Restaurant by ID.
  * @apiName updateRestaurant
  * @apiGroup Restaurant
  * @apiDescription Updates a Restaurant in database.
@@ -54,7 +54,7 @@ router.route('/readAllRestaurants').get(restaurantController.allRestaurants)
  * @apiUse RestaurantNotFoundError
  */
 
-router.route('/updateRestaurant').post(restaurantController.updateRestaurant)
+router.route('/updateRestaurant').post(restaurantController.updateRestaurant) 
 
 /**
  * @api {get} restaurants/findRestWithDishes/:id Find Restaurant by ID.
