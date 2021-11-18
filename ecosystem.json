@@ -20,13 +20,13 @@
 
 			"user": "ubuntu",
 
-			"host": ["ec2-3-16-43-251.us-east-2.compute.amazonaws.com"],
+			"host": ["ec2-3-21-27-193.us-east-2.compute.amazonaws.com"],
 
 			"ref": "origin/develop",
 
 			"repo": "git@github.com:stephanmoveo/epicure-backend.git",
 
-			"path": "/home/ubuntu/epicure-server",
+			"path": "/home/ubuntu/epicure/server",
 
 			"ssh_options": "StrictHostKeyChecking=no",
 
