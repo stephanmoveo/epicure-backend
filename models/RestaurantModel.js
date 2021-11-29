@@ -5,6 +5,9 @@ const restaurantModel = new Schema({
   image: { type: String, required: true, default: "" },
   chef: { type: Schema.Types.ObjectId, ref: "chef" },
   valid: { type: Boolean, required: true, default: true },
+  phoneNmuber: { type: String },
+  openingHours: { type: String },
+  address:{ type: String },
 });
 
 module.exports = model("restaurant", restaurantModel);

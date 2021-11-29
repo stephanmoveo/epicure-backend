@@ -5,14 +5,24 @@ const {
   findRestsWithDishesAggregation,
 } = require("./Aggregations/Aggregations");
 const { findAllRestaurantsWithDishes } = require("./Aggregations/Aggregations");
+const { restaurantDetailsCrawler } = require("./Crawlers/RestCrawler");
 
 exports.createRestaurant = async (data) => {
-  return await restaurantModel.create({
-    name: data.name,
-    image: data.image,
-    chef: makeObjectId(data.chefId),
-    valid: true,
-  });
+  try {
+    const res = await restaurantDetailsCrawler(data.name);
+    console.log("this is the result" + res.tableHours);
+    return await restaurantModel.create({
+      name: data.name,
+      image: data.image,
+      chef: makeObjectId(data.chefId),
+      valid: true,
+      phoneNmuber: res.phoneNumber,
+      openingHours: res.tableHours,
+      address: res.address,
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 exports.allRestaurantsHandler = async () => {

@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs": "apidoc -i ./ -o apidoc/"
@@ -17,6 +16,8 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.12"
+    "mongoose": "^6.0.12",
+    "puppeteer": "^12.0.0",
+    "puppeteer-core": "^12.0.0"
   }
 }
