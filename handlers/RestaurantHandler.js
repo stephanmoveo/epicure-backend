@@ -10,7 +10,6 @@ const { restaurantDetailsCrawler } = require("./Crawlers/RestCrawler");
 exports.createRestaurant = async (data) => {
   try {
     const res = await restaurantDetailsCrawler(data.name);
-    console.log("this is the result" + res.tableHours);
     return await restaurantModel.create({
       name: data.name,
       image: data.image,
