@@ -19,6 +19,7 @@ const getDetails = async (page) => {
   return result;
 };
 exports.restaurantDetailsCrawler = async (restName) => {
+  console.log('im innnn');
   try {
     const browser = await puppeteer.launch({
       defaultViewport: null,
