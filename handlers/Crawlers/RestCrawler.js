@@ -25,6 +25,7 @@ exports.restaurantDetailsCrawler = async (restName) => {
       defaultViewport: null,
       headless: true,
       args: ["--no-sandbox"],
+      executablePath: '/usr/bin/chromium-browser'
     });
 
     const page = await browser.newPage();
