@@ -9,15 +9,15 @@ const { restaurantDetailsCrawler } = require("./Crawlers/RestCrawler");
 
 exports.createRestaurant = async (data) => {
   try {
-    const res = await restaurantDetailsCrawler(data.name);
+    // const res = await restaurantDetailsCrawler(data.name);
     return await restaurantModel.create({
       name: data.name,
       image: data.image,
       chef: makeObjectId(data.chefId),
       valid: true,
-      phoneNmuber: res.phoneNumber,
-      openingHours: res.tableHours,
-      address: res.address,
+      // phoneNmuber: res.phoneNumber,
+      // openingHours: res.tableHours,
+      // address: res.address,
     });
   } catch (err) {
     console.log(err);
